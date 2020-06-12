@@ -20,6 +20,11 @@ Vue.use(VueRouter)
     component: () => import('../components/SignIn.vue')
   },
   {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../components/Home.vue')
+  },
+  {
     path: '/allUtenti',
     name: 'ListaUtenti',
     component: () => import('../components/ListaUtenti.vue')

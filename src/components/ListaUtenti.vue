@@ -1,5 +1,6 @@
 <template>
     <div>
+      <NavBar />
       <h1>LISTA UTENTI</h1>
       <table class="table table-hover table-dark">
         <thead>
@@ -23,7 +24,7 @@
             <td>{{utente.data_nascita}}</td>
             <td>{{utente.ruoloId}}</td>
             <td>
-              <button type="button" class="btn btn-outline-danger" >Elimina</button>
+              <button type="button" class="btn btn-outline-danger" @click="elimina(utente.id)" >Elimina</button>
             </td>
             <td>
               <button type="button" class="btn btn-outline-warning war"  >Modifica</button>
@@ -36,6 +37,8 @@
 
 <script>
 import UtenteDataService from "../services/utente.service";
+import NavBar from './NavBar';
+import router from '../router/index';
 
 export default {
   name: "listaUtenti",
@@ -46,6 +49,9 @@ export default {
       
       
     };
+  },
+  components: {
+    NavBar
   },
 
   methods: {
@@ -66,6 +72,7 @@ export default {
       .then(response => {
         console.log(response)
         console.log(id)
+        router.push("/allUtenti")
       })
       .catch(e => {
         console.log(e)

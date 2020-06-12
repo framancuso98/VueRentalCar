@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavBar />
     <h1>Lista Prenotazioni</h1>
     <table class="table table-hover table-dark">
       <thead>
@@ -44,7 +45,7 @@
 
 <script>
 import PrenotazioneDataService from "../services/prenotazione.service";
-
+import NavBar from './NavBar';
 export default {
   name: "listaPrenotazione",
   data() {
@@ -52,6 +53,9 @@ export default {
       lista: [],
       errors: []
     };
+  },
+  components: {
+    NavBar
   },
 
   methods: {

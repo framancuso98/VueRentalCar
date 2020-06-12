@@ -1,32 +1,34 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark ">
-  <a class="navbar-brand">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <router-link  className="nav-link" to="/admin">Home <span class="sr-only">(current)</span></router-link>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <router-link to="/allUtenti" className="nav-link">Lista Utenti</router-link>
+        <a class="nav-link" href="/allUtenti">Lista Utenti</a>
       </li>
       <li class="nav-item">
-        <router-link to="/addUtente" className="nav-link">Aggiungi Utente</router-link>
+        <a class="nav-link " href="/allAuto">Lista Auto</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/allPrenotazioni">Lista Prenotazioni <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <router-link to="/allAuto" className="nav-link">Lista Auto</router-link>
+        <a class="nav-link" href="/addUtente">Aggiungi Utente</a>
       </li>
       <li class="nav-item">
-        <router-link to="/addAuto" className="nav-link">Aggiungi Auto</router-link>
+        <a class="nav-link " href="/addAuto">Agiungi Auto</a>
       </li>
-      <li class="nav-item">
-        <router-link to="/allPrenotazioni" className="nav-link"> Lista Prenotazioni </router-link>
-      </li>
-      
-      <button type="button" class="btn btn-dark" >Logout</button>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-dark my-2 my-sm-0" type="submit" >Logout</button>
+    </form>
   </div>
 </nav>
 </template>

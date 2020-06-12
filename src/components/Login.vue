@@ -39,6 +39,7 @@
 
 <script>
 import AuthDataService from "../services/authService";
+import router from '../router/index'
 
 export default {
   name: "login",
@@ -60,9 +61,9 @@ export default {
         .then(response => {
           console.log(response.data);
           console.log("Login ok");
-          //localStorage.setItem("utente", JSON.stringify(response.data));
-          //this.props.history.push('/home');
-          //console.log(localStorage.getItem("utente"))
+          localStorage.setItem("utente", JSON.stringify(response.data));
+          router.push('/home');
+          console.log(localStorage.getItem("utente"))
         })
         .catch(e => {
           //this.errors.push(e),
