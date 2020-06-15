@@ -1,30 +1,28 @@
 <template>
-  <div >
+  <div>
     <NavBar />
-    <h1>Benvenuto </h1>
+    <h1>Benvenuto {{ username }}</h1>
+    
   </div>
 </template>
 
 <script>
- import NavBar from './NavBar';
+import NavBar from "./NavBar";
 export default {
- 
-  name: 'Home',
+  name: "Home",
   data() {
     return {
-    }
+      username: localStorage.getItem("username"),
+    };
   },
   components: {
     NavBar
   },
 
+  methods: {},
 
-  methods:{
-  },
-
-  mounted() {
-  },
-}
+  mounted() {}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

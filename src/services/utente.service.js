@@ -1,10 +1,11 @@
 import http from './http.common';
+import authHeader from './authHeader';
 
 class UtenteDataService {
 
     getAll() {
         console.log("GET ALL UTENTI");
-        return http.get("/utente/all");
+        return http.get("/utente/all", { headers: authHeader() });
     }
 
     delete(id) {

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    
-    <form class="form">
+  <div class="container">
       <h1>REGISTRATI</h1>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -22,11 +20,11 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputNome">Nome</label>
-          <input type="email" class="form-control" id="inputNome" required v-model="nome" />
+          <input type="text" class="form-control" id="inputNome" required v-model="nome" />
         </div>
         <div class="form-group col-md-6">
           <label for="inputCognome">Cognome</label>
-          <input type="password" class="form-control" id="inputCognome" required v-model="cognome" />
+          <input type="text" class="form-control" id="inputCognome" required v-model="cognome" />
         </div>
       </div>
       <div class="form-row">
@@ -36,12 +34,13 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary" @click="salvaUtente">Sign in</button>
-    </form>
+    
   </div>
 </template>
 
 <script>
 import AuthDataService from "../services/authService";
+import router from '../router/index';
 
 export default {
   name: "SignIn",
@@ -69,6 +68,7 @@ export default {
       AuthDataService.signIn(data)
         .then(response => {
           console.log(response.data), console.log("REGISTRAZIONE AVVENUTA");
+          router.push("/login");
         })
         .catch(e => {
           console.log(e);

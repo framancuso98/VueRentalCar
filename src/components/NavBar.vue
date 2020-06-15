@@ -21,21 +21,32 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/addUtente">Aggiungi Utente</a>
+        
       </li>
       <li class="nav-item">
         <a class="nav-link " href="/addAuto">Agiungi Auto</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-dark my-2 my-sm-0" type="submit" >Logout</button>
-    </form>
+    <ul class="form-inline my-2 my-lg-0">
+      <button class="btn btn-dark my-2 my-sm-0" type="submit" @click="logout" >Logout</button>
+    </ul>
   </div>
 </nav>
 </template>
 
 <script>
+import router from '../router/index';
+
 export default {
   name: 'NavBar',
+  
+
+  methods: {
+    logout() {
+      localStorage.removeItem("utente");
+      router.push("/")
+    }
+  }
 
 }
 </script>

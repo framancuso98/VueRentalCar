@@ -1,19 +1,18 @@
 <template>
-  <div class="login">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <h1>FORM DI LOGIN</h1>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6 col-md-offset-3 ">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 ">
           <label>Email</label>
           <input name="email" type="email" class="form-control" required v-model="username" />
         </div>
       </div>
-        <div class="form-row ">
-        <div class="form-group col-md-6 col-md-offset-3">
+        <div class="row">
+        <div class="col-md-6 col-md-offset-3">
           <label>Password</label>
           <input
             name="password"
@@ -29,12 +28,11 @@
             <span class="text-danger">{{ error.message }}</span>
           </ul>
         </ul>
-        <div class="form-row col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3">
         <button @click="login">Login</button>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -62,6 +60,9 @@ export default {
           console.log(response.data);
           console.log("Login ok");
           localStorage.setItem("utente", JSON.stringify(response.data));
+          localStorage.setItem("token", JSON.stringify(response.data.token));
+          localStorage.setItem("username", JSON.stringify(response.data.username));
+          console.log(localStorage.getItem("token"))
           router.push('/home');
           console.log(localStorage.getItem("utente"))
         })

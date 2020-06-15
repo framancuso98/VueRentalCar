@@ -32,10 +32,10 @@
           <td>{{prenotazione.utente.data_nascita}}</td>
           <td>{{prenotazione.stato}}</td>
           <td>
-            <button type="button" class="btn btn-success">Accetta</button>
+            <button type="button" class="btn btn-success" @click="accetta(prenotazione.id)">Accetta</button>
           </td>
           <td>
-            <button type="button" class="btn btn-danger">Rifiuta</button>
+            <button type="button" class="btn btn-danger" @click="rifiuta(prenotazione.id)">Rifiuta</button>
           </td>
         </tr>
       </tbody>
@@ -46,6 +46,8 @@
 <script>
 import PrenotazioneDataService from "../services/prenotazione.service";
 import NavBar from './NavBar';
+import router from '../router/index';
+
 export default {
   name: "listaPrenotazione",
   data() {
@@ -69,7 +71,29 @@ export default {
           this.errors.push(e);
           console.log(e);
         });
-    }
+    },
+
+    accetta: function(id){
+      PrenotazioneDataService.accetta(id)
+      .then(response => {
+        console.log(response)
+        router.go(0)
+      })
+      .catch( e =>{
+        console.log(e)
+      })
+    },
+
+    rifiuta: function(id){
+      PrenotazioneDataService.rifiuta(id)
+      .then(response => {
+        console.log(response)
+        router.go(0)
+      })
+      .catch( e =>{
+        console.log(e)
+      })
+    },
   },
 
   mounted() {
