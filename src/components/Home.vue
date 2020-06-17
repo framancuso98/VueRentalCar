@@ -2,7 +2,8 @@
   <div>
     <NavBar />
     <h1>Benvenuto {{ username }}</h1>
-    
+
+
   </div>
 </template>
 
@@ -11,15 +12,17 @@ import NavBar from "./NavBar";
 export default {
   name: "Home",
   data() {
+    
     return {
-      username: localStorage.getItem("username"),
+      username: localStorage.getItem("username")
     };
   },
   components: {
     NavBar
   },
 
-  methods: {},
+  methods: {
+  },
 
   mounted() {}
 };

@@ -212,7 +212,8 @@ export default {
         UtenteDataService.update(this.id, data)
         .then(response => {
           console.log(response);
-          router.go(0)
+          //router.go(0)
+          window.location.reload();
         })
         .catch(e => {
           console.log(e)

@@ -7,12 +7,12 @@
     <div class="grid grid-pad">
       <div class="row">
         <div class="col-12 col-md-6">
-            <button class="col-md-8 button module" @click="login">
+            <button type="button" class="btn btn-secondary col-md-8" @click="login">
               <h4>LOGIN</h4>
             </button>
         </div>
         <div class="col-12 col-md-6">
-            <button class="col-md-8 button module" @click="signIn">
+            <button type="button" class="btn btn-secondary col-md-8" @click="signIn">
               <h4>REGISTRATI</h4>
             </button>
         </div>
@@ -46,4 +46,5 @@ export default {
 .tit{
   color: darkred;
 }
+
 </style>

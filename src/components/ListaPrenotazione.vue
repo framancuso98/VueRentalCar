@@ -46,7 +46,7 @@
 <script>
 import PrenotazioneDataService from "../services/prenotazione.service";
 import NavBar from './NavBar';
-import router from '../router/index';
+//import router from '../router/index';
 
 export default {
   name: "listaPrenotazione",
@@ -77,7 +77,8 @@ export default {
       PrenotazioneDataService.accetta(id)
       .then(response => {
         console.log(response)
-        router.go(0)
+        //router.go(0)
+        window.location.reload();
       })
       .catch( e =>{
         console.log(e)
@@ -88,7 +89,8 @@ export default {
       PrenotazioneDataService.rifiuta(id)
       .then(response => {
         console.log(response)
-        router.go(0)
+        //router.go(0)
+        window.location.reload();
       })
       .catch( e =>{
         console.log(e)
