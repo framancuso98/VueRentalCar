@@ -9,7 +9,7 @@
           <input type="email" class="form-control" id="inputEmail" required v-model="username" />
           <div class="row" v-if="!(username.length < 2) && !checkUsername()">
             <div class="col">
-              <span>Formato email non corretto!</span>
+              <span>{{ errors.errEmail }}</span>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
           />
           <div class="row" v-if="!(password.length < 1) && !checkPass()">
             <div class="col">
-              <span>Password troppo corta, minimo 6 caratteri!!</span>
+              <span>{{ errors.noMatchPass }}</span>
             </div>
           </div>
         </div>
@@ -33,18 +33,18 @@
         <div class="form-group col-md-6">
           <label for="inputNome">Nome</label>
           <input type="text" class="form-control" id="inputNome" required v-model="nome" />
-          <div class="row" v-if="(nome.length > 1) && !checkNome()">
+          <div class="row" v-if="(nome.length > 0) && !checkNome()">
             <div class="col">
-              <span>Nome troppo corto!!</span>
+              <span>{{ errors.errNome }}</span>
             </div>
           </div>
         </div>
         <div class="form-group col-md-6">
           <label for="inputCognome">Cognome</label>
           <input type="text" class="form-control" id="inputCognome" required v-model="cognome" />
-          <div class="row" v-if="(cognome.length > 1) && !checkCognome()">
+          <div class="row" v-if="(cognome.length > 0) && !checkCognome()">
             <div class="col">
-              <span>Cognome troppo corto!!</span>
+              <span>{{ errors.errCognome }}</span>
             </div>
           </div>
         </div>
@@ -67,9 +67,9 @@
             <option value="1">ADMIN</option>
           </select>
         </div>
-        <div class="row" v-if="errgen">
+        <div class="row" v-if="errGen">
           <div class="col-12">
-            <span>{{ errgen }}</span>
+            <span>{{ errGen }}</span>
           </div>
         </div>
       </div>
@@ -93,7 +93,16 @@ export default {
       cognome: "",
       data_nascita: null,
       ruoloId: 2,
-      errgen: null,
+      errors: {
+        errEmail: "Formato email non corretto!",
+        errGen: "",
+        noMatchPass: "Formato password non corretto, minimo 6 caratteri!!",
+        errNome: "Nome troppo corto!!",
+        errCognome: "Cognome troppo corto!!",
+        errData:"Inserisci la data di nascita",
+        otherErr: "",
+        noUserame: "",
+      },
       /*eslint-disable */
       regEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       regPass: /[A-Za-z0-9\.\+\%&$]{6,}/,
@@ -129,59 +138,37 @@ export default {
             router.push("/allUtenti");
           })
           .catch(e => {
-            console.log(e);
+            console.log(e.response);
+            //console.log(e)
           });
       } else {
         console.log(this.data);
-        this.errgen = "Compila Correttamente tutti i campi!!";
+        this.errors.errGen = "Compila Correttamente tutti i campi!!";
       }
     },
 
     checkUsername: function() {
-      if (this.username.match(this.regEmail)) {
-        console.log("ok");
-        this.emailErr = "";
-        return true;
-      } else {
-        this.emailErr = "formato email non valido!!";
-        return false;
-      }
+      return (this.username.match(this.regEmail))
+        
     },
 
     checkNome: function() {
-      if (this.nome.match(this.regNomCog)) {
-        return true;
-      } else {
-        console.log("ok");
-        return false;
-      }
+      return (this.nome.match(this.regNomCog))
+        
     },
 
     checkCognome: function() {
-      if (this.cognome.match(this.regNomCog)) {
-        return true;
-      } else {
-        console.log("ok");
-        return false;
-      }
+      return (this.cognome.match(this.regNomCog))
+        
     },
 
     checkPass: function() {
-      if (this.password.match(this.regPass)) {
-        return true;
-      } else {
-        console.log("ok");
-        return false;
-      }
+      return (this.password.match(this.regPass))
+        
     },
 
     checkData: function() {
-      if (this.data_nascita != null) {
-        return true;
-      } else {
-        console.log("ok");
-        return false;
-      }
+      return (this.data_nascita != null)   
     }
   }
 };
