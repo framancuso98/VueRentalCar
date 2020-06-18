@@ -12,6 +12,11 @@
               <span>{{ errors.errEmail }}</span>
             </div>
           </div>
+          <div class="row" >
+            <div class="col">
+              <span>{{ errors.noUserame }}</span>
+            </div>
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword">Password</label>
@@ -67,13 +72,19 @@
             <option value="1">ADMIN</option>
           </select>
         </div>
-        <div class="row" v-if="errGen">
-          <div class="col-12">
-            <span>{{ errGen }}</span>
-          </div>
-        </div>
+        
       </div>
       <button class="btn btn-primary" @click="salvaUtente">Salva</button>
+      <div class="row">
+          <div class="col-12">
+            <span>{{ errors.errGen }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <span>{{ errors.otherErr }}</span>
+          </div>
+        </div>
     </div>
   </div>
 </template>
@@ -121,7 +132,7 @@ export default {
         this.checkNome() &&
         this.checkCognome() &&
         this.checkPass() &&
-        this.checkData()
+        (this.data_nascita != null)
       ) {
         const data = {
           username: this.username,
@@ -138,11 +149,15 @@ export default {
             router.push("/allUtenti");
           })
           .catch(e => {
-            console.log(e.response);
-            //console.log(e)
+            if (e.response.status == 403){
+              this.errors.noUserame = e.response.data.message;
+            }else if (e.response.status == 400){
+              this.errors.otherErr = e.response.data.message + " Compila correttamente i campi"
+            }else if (e.response.status == 500){
+              this.errors.otherErr = e.response.data.message
+            }
           });
       } else {
-        console.log(this.data);
         this.errors.errGen = "Compila Correttamente tutti i campi!!";
       }
     },

@@ -28,7 +28,7 @@
         <label for="inputNome">Nome</label>
         <input type="text" class="form-control" id="inputNome" required v-model="nome" />
 
-        <div class="row" v-if="(nome.length > 1) && !checkNome()">
+        <div class="row" v-if="(nome.length > 0) && !checkNome()">
           <div class="col">
             <span>Nome troppo corto!!</span>
           </div>
@@ -38,7 +38,7 @@
         <label for="inputCognome">Cognome</label>
         <input type="text" class="form-control" id="inputCognome" required v-model="cognome" />
 
-        <div class="row" v-if="(cognome.length > 1) && !checkCognome()">
+        <div class="row" v-if="(cognome.length > 0) && !checkCognome()">
           <div class="col">
             <span>Cognome troppo corto!!</span>
           </div>
@@ -85,7 +85,8 @@ export default {
       /*eslint-disable */
       regEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       regPass: /[A-Za-z0-9\.\+\%&$]{6,}/,
-      regNomCog:/[A-Za-z+/ +/]{4,}/,
+      regNomCog: 
+      /[A-Za-z+/ +/]{4,}/,
       /*eslint-enable */
       passOk: Boolean,
       emailOk: Boolean
@@ -135,41 +136,23 @@ export default {
     },
 
     checkNome: function() {
-      if (this.nome.match(this.regNomCog)) {
-        console.log("nome true");
-        return true;
-      } else {
-        return false;
-      }
+      return (this.nome.match(this.regNomCog))
+        
     },
 
     checkCognome: function() {
-      if (this.cognome.match(this.regNomCog)) {
-        console.log("cognome true");
-        return true;
-      } else {
+      return (this.cognome.match(this.regNomCog))
         
-        return false;
-      }
     },
 
     checkPass: function() {
-      if (this.password.match(this.regPass)) {
-        console.log("password true");
-        return true;
-      } else {
-        
-        return false;
-      }
+      return (this.password.match(this.regPass))
+         
     },
 
     checkData: function() {
-      if (this.data_nascita != null) {
-        console.log("data true");
-        return true;
-      } else {
-        return false;
-      }
+      return (this.data_nascita != null)
+        
     }
   }
 };
